@@ -43,7 +43,9 @@ window.Echo = new Echo({
     disableStats: true,
 });
 
-window.Echo.channel('notifications')
-        .listen('PukeEvent', e => {
-            console.log(e);
-        });
+let AuthID = $('meta[name=userID]').attr('content');
+
+window.Echo.private(`notifications.${AuthID}`)
+    .listen('PukeEvent', e => {
+        alert('You have notification')
+    });

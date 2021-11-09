@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -21,10 +22,13 @@ class PukeEvent implements ShouldBroadcast
      */
 
     public $message;
+    public $user_id;
 
-    public function __construct($message)
+    public function __construct($message, $user_id)
     {
         $this->message = $message;
+
+        $this->user_id = $user_id;
     }
 
     /**
@@ -34,7 +38,7 @@ class PukeEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('notifications');
+        return new PrivateChannel('notifications.'.$this->user_id);
     }
 
     public function broadcastWith()

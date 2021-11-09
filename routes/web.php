@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\PukeEvent;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/runEvent', function () {
-    event(new PukeEvent('Hello'));
+Route::get('/puke/{user_id}', function ($user_id) {
+    event(new PukeEvent('Hello',$user_id));
     return 'Done';
 });

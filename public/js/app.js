@@ -43474,8 +43474,9 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   forceTLS: false,
   disableStats: true
 });
-window.Echo.channel('notifications').listen('PukeEvent', function (e) {
-  console.log(e);
+var AuthID = $('meta[name=userID]').attr('content');
+window.Echo["private"]("notifications.".concat(AuthID)).listen('PukeEvent', function (e) {
+  alert('You have notification');
 });
 
 /***/ }),

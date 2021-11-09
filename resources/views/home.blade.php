@@ -15,7 +15,7 @@
                             <div>Email : {{ $item->email }}</div>
                         </div>
                         <br>
-                        <button class="btn btn-primary"> send notification</button>
+                        <button class="btn btn-primary" onclick="puke({{$item->id}})"> send notification</button>
                     </div>
                 </div>
             </div>
@@ -24,4 +24,12 @@
         {{--  --}}
     </div>
 </div>
+<script>
+    function puke (user_id) {
+        axios.get(`/puke/${user_id}`)
+        .then((response) => {
+            console.log(response.data);
+        });
+    }
+</script>
 @endsection
